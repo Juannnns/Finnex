@@ -21,6 +21,9 @@
 
 <div class="app-shell">
 
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <!-- Sidebar -->
     @include('components.sidebar')
 
@@ -36,8 +39,11 @@
     </div>
 </div>
 
-<!-- Floating FIN-BOT Button -->
-<a href="{{ route('finbot') }}" class="a11y-toggle-btn" id="floating-finbot-btn" title="Chatear con FIN-BOT" aria-label="Abrir FIN-BOT">
+<!-- Mobile Bottom Navigation -->
+@include('components.bottom-nav')
+
+<!-- Floating FIN-BOT Button (Desktop only) -->
+<a href="{{ route('finbot') }}" class="a11y-toggle-btn desktop-only-btn" id="floating-finbot-btn" title="Chatear con FIN-BOT" aria-label="Abrir FIN-BOT">
     <img src="{{ asset('images/finbot.png') }}" alt="FIN-BOT Asistente" width="48" height="48">
 </a>
 

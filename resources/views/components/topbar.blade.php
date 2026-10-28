@@ -2,12 +2,21 @@
 <header class="topbar mobile-topbar" role="banner" style="position:relative; z-index:50;">
 
     {{-- Title Area --}}
-    <div class="topbar-title">
+    <div class="topbar-title" style="display:flex;align-items:center;gap:12px;">
+        {{-- Hamburger Button for Mobile --}}
+        <button class="topbar-btn hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" style="display:none;background:none;border:none;color:var(--text-primary);cursor:pointer;padding:6px;border-radius:8px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
         <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:28px;height:28px;background:var(--gradient-brand);border-radius:6px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(124,58,237,0.4);">
+            <div style="width:28px;height:28px;background:var(--gradient-brand);border-radius:6px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(124,58,237,0.4);flex-shrink:0;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
             </div>
-            <div id="page-title-text">@yield('page-title', 'Dashboard')</div>
+            <div id="page-title-text" style="font-weight:700;">@yield('page-title', 'Dashboard')</div>
         </div>
         <div class="topbar-subtitle" id="page-subtitle-text" style="font-size:11px;">@yield('page-subtitle', '')</div>
     </div>

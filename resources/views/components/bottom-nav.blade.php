@@ -26,15 +26,14 @@
         <span>FIN-BOT</span>
     </a>
 
-    <a href="{{ route('finsafe') }}" class="bottom-nav-item {{ request()->routeIs('finsafe') ? 'active' : '' }}">
+    <a href="{{ route('transfers') }}" class="bottom-nav-item {{ request()->routeIs('transfers') ? 'active' : '' }}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M17 1l4 4-4 4"/>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <path d="M7 23l-4-4 4-4"/>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
         </svg>
-        <span>Seguridad</span>
-        @php $pendingAlerts = 2; @endphp
-        @if($pendingAlerts > 0)
-            <span class="nav-badge"></span>
-        @endif
+        <span>Transferir</span>
     </a>
 
     <a href="{{ route('profile') }}" class="bottom-nav-item {{ request()->routeIs('profile') ? 'active' : '' }}">
