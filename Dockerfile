@@ -1,27 +1,25 @@
-FROM richarvey/nginx-php-fpm:3.1.6
+FROM serversideup/php:8.3-fpm-nginx
 
-# Copiar el código del proyecto
-COPY . /var/www/html
+ENV SSL_MODE=off
+ENV NGINX_WEBROOT=/var/www/html/public
+ENV PHP_OPCACHE_ENABLE=1
 
-# Copiar configuración de Nginx para Laravel
-COPY conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf
+USER root
 
-# Variables de entorno
-ENV SKIP_COMPOSER 1
-ENV WEBROOT /var/www/html/public
-ENV PHP_ERRORS_STDERR 1
-ENV RUN_SCRIPTS 1
-ENV REAL_IP_HEADER 1
+# Instalar extensiones necesarias de PHP para Laravel y Clever Cloud MySQL
+RUN install-php-extensions pdo_mysql intl bcmath
 
-# Crear carpetas requeridas y otorgar permisos
+# Copiar aplicación con el usuario www-data
+COPY --chown=www-data:www-data . /var/www/html
+
+# Asegurar directorios de almacenamiento y permisos
 RUN mkdir -p /var/www/html/storage/framework/sessions \
              /var/www/html/storage/framework/views \
              /var/www/html/storage/framework/cache \
              /var/www/html/storage/logs \
              /var/www/html/bootstrap/cache \
-    && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Instalar dependencias de PHP (vendor/autoload.php)
+# Cambiar al usuario www-data e instalar dependencias con Composer
+USER www-data
 RUN composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-
-EXPOSE 80 10000
