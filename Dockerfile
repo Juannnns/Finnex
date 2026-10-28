@@ -1,4 +1,4 @@
-FROM serversideup/php:8.3-fpm-nginx
+FROM serversideup/php:8.4-fpm-nginx
 
 ENV SSL_MODE=off
 ENV NGINX_WEBROOT=/var/www/html/public
